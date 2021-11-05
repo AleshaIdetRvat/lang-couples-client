@@ -1,0 +1,58 @@
+.sky-container {
+    padding: 45px 46px;
+    background-color: var(--light-sky);
+    border-radius: 57px;
+}
+
+.entry-page {
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    &__welcome {
+    }
+
+    &__title {
+        height: 119px;
+
+        text-align: center;
+        line-height: 102.08%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    &__sign-up {
+    }
+}
+
+.entry-sign-up {
+    width: min-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    &__login {
+    }
+
+    &__login-btn,
+    &__reg-btn {
+        width: 175px;
+    }
+
+    &__reg-btn {
+    }
+
+    &__separator {
+    }
+
+    &__register {
+    }
+}
