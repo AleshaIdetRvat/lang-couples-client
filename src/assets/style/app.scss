@@ -39,12 +39,12 @@
     max-width: 768px;
     margin: 0 auto;
     opacity: 0;
-    left: 0;
-    top: 0;
-    right: 0;
+    // left: 0;
+    // top: 0;
+    // right: 0;
+    // position: absolute;
     width: 100%;
     min-height: 100%;
-    position: absolute;
     z-index: 2;
     border-radius: 10px;
     background-color: var(--white);
