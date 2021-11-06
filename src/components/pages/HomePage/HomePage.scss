@@ -76,7 +76,8 @@
 .today-themes__container {
     width: 268px;
     // height: 208px;
-    max-height: 35vh;
+    // max-height: 35vh;
+    max-height: calc(var(--vh, 1vh) * 35);
     margin-bottom: 20px;
     border-radius: 0 0 8px 8px;
     background-color: var(--light-sky);

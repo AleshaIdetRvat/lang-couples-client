@@ -15,15 +15,17 @@ const HomePage = ({ translate, ...props }) => {
 
     const onSubmit = async (theme) => {
         // langFrom, langTo, theme, keyword,
-        dispatch(
-            getCouples({
-                langFrom: from,
-                langTo: to,
-                keyword: keyWord || null,
-                theme,
-            })
-        )
-        history.push("/lesson")
+        if (!(keyWord === null || keyWord === "")) {
+            dispatch(
+                getCouples({
+                    langFrom: from,
+                    langTo: to,
+                    keyword: keyWord || null,
+                    theme,
+                })
+            )
+            history.push("/lesson")
+        }
     }
 
     return (
