@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router"
 import { getCouples } from "../../../redux/reducers/LessonReducer"
@@ -7,11 +8,14 @@ import { MainInput } from "../../common/MainInput/MainInput"
 import "./HomePage.scss"
 
 const HomePage = ({ translate, ...props }) => {
+    const { i18n } = useTranslation()
     const history = useHistory()
     const [keyWord, setKeyWord] = useState(null)
 
     const { from, to } = useSelector((state) => state.PersonalData.langs)
     const dispatch = useDispatch()
+
+    React.useEffect(() => i18n.changeLanguage(from), [from])
 
     const onSubmit = (theme) => {
         // langFrom, langTo, theme, keyword,

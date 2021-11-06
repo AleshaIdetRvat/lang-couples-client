@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useHistory } from "react-router-dom"
-import { connect, useSelector } from "react-redux"
+import { connect } from "react-redux"
 import { Formik } from "formik"
 import * as yup from "yup"
 
@@ -9,8 +9,8 @@ import { register } from "../../../redux/reducers/UserAuthDataReducer"
 import { GreenBtn } from "../../common/GreenBtn/GreenBtn"
 import { MainInput } from "../../common/MainInput/MainInput"
 import { newNotice } from "../../../redux/reducers/NoticeReducer"
-import "./RegisterPage.scss"
 import { Loader } from "../../common/Loader/Loader"
+import "./RegisterPage.scss"
 
 const RegisterForm = ({ className, onSubmitReg }) => {
     //
@@ -117,6 +117,7 @@ const RegisterPage = ({ isFetching, authError, register, newNotice }) => {
 
     const onSubmitReg = async (email, password) => {
         try {
+            console.log("on register")
             await register(email, password)
 
             history.push("/start")
@@ -125,7 +126,7 @@ const RegisterPage = ({ isFetching, authError, register, newNotice }) => {
 
     React.useEffect(() => {
         authError.text && newNotice(authError.text, "warning")
-    })
+    }, [authError.text])
 
     return (
         <>

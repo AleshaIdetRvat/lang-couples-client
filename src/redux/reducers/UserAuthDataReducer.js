@@ -95,20 +95,9 @@ export const register = (email, password) => async (dispath) => {
 }
 
 // thunk creator
-export const logout = () => (dispath) => {
-    dispath(setAuthData(null, null))
-
-    dispath(setIsAuth(false))
-
-    localStorage.setItem(
-        userDataStorage,
-        JSON.stringify({ userId: null, token: null })
-    )
-}
-
-// thunk creator
 export const login = (email, password) => async (dispath) => {
     dispath(setIsFetching(true))
+
     try {
         const lowerCaseEmail = email.toLowerCase()
 
@@ -153,6 +142,18 @@ export const initLogin = () => (dispath) => {
         }
         dispath(setIsAuth(true))
     }
+}
+
+// thunk creator
+export const logout = () => (dispath) => {
+    dispath(setAuthData(null, null))
+
+    dispath(setIsAuth(false))
+
+    localStorage.setItem(
+        userDataStorage,
+        JSON.stringify({ userId: null, token: null })
+    )
 }
 
 export default UserAuthDataReducer

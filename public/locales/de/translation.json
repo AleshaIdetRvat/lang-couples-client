@@ -33,7 +33,7 @@
     "profile": {
         "Your login": "Ihr Login",
         "statistic-title": "Statistiken über die Ergebnisse der gelösten Übungen",
-        "failed attempts": "failed attempts",
-        "correctly solved": "correctly solved"
+        "failed attempts": "erfolglose Versuche",
+        "correctly solved": "richtig gelöst"
     }
 }
