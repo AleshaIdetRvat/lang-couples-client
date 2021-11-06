@@ -13,9 +13,9 @@ const HomePage = ({ translate, ...props }) => {
     const { from, to } = useSelector((state) => state.PersonalData.langs)
     const dispatch = useDispatch()
 
-    const onSubmit = async (theme) => {
+    const onSubmit = (theme) => {
         // langFrom, langTo, theme, keyword,
-        if (!(keyWord === null || keyWord === "")) {
+        try {
             dispatch(
                 getCouples({
                     langFrom: from,
@@ -24,8 +24,9 @@ const HomePage = ({ translate, ...props }) => {
                     theme,
                 })
             )
+
             history.push("/lesson")
-        }
+        } catch (error) {}
     }
 
     return (
@@ -65,7 +66,7 @@ const HomePage = ({ translate, ...props }) => {
                     className='home__your-word-form'
                     onSubmit={(e) => {
                         e.preventDefault()
-                        onSubmit()
+                        if (!(keyWord === null || keyWord === "")) onSubmit()
                     }}
                 >
                     <MainInput

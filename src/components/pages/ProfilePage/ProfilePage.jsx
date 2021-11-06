@@ -1,10 +1,13 @@
 import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { getUserData } from "../../../redux/reducers/ProfileReducer"
+import { Loader } from "../../common/Loader/Loader"
 import "./ProfilePage.scss"
 
 const ProfilePage = ({ translate }) => {
-    const { exercises, langs, email } = useSelector((state) => state.Profile)
+    const { exercises, langs, email, isFetching } = useSelector(
+        (state) => state.Profile
+    )
     const dispatch = useDispatch()
 
     const smallCircleRef = React.useRef()
@@ -33,64 +36,67 @@ const ProfilePage = ({ translate }) => {
     }, [procent])
 
     return (
-        <div className='profile'>
-            <div className='profile__container'>
-                <header className='profile__header'>
-                    <span>{translate("profile.Your login")}: </span>
-                    <span className='profile__email'>{email}</span>
-                </header>
+        <>
+            <Loader isLoading={isFetching} />
+            <div className='profile'>
+                <div className='profile__container'>
+                    <header className='profile__header'>
+                        <span>{translate("profile.Your login")}: </span>
+                        <span className='profile__email'>{email}</span>
+                    </header>
 
-                <article className='profile__statistic exercises-statistic'>
-                    <div className='exercises-statistic__container'>
-                        <h2 className='exercises-statistic__title'>
-                            {translate("profile.statistic-title")}:
-                            <hr className='exercises-statistic__separator' />
-                        </h2>
-                        <div className='exercises-statistic__diagram diagram'>
-                            <div className='diagram__body'>
-                                <div
-                                    ref={bigCircleRef}
-                                    className='diagram__big-circle'
-                                >
-                                    {exercises.completed !== 0
-                                        ? 100 - procent
-                                        : 0}
-                                    %
-                                </div>
-
-                                {exercises.completed !== 0 && (
+                    <article className='profile__statistic exercises-statistic'>
+                        <div className='exercises-statistic__container'>
+                            <h2 className='exercises-statistic__title'>
+                                {translate("profile.statistic-title")}:
+                                <hr className='exercises-statistic__separator' />
+                            </h2>
+                            <div className='exercises-statistic__diagram diagram'>
+                                <div className='diagram__body'>
                                     <div
-                                        ref={smallCircleRef}
-                                        className='diagram__small-circle'
+                                        ref={bigCircleRef}
+                                        className='diagram__big-circle'
                                     >
-                                        {procent}%
+                                        {exercises.completed !== 0
+                                            ? 100 - procent
+                                            : 0}
+                                        %
                                     </div>
-                                )}
+
+                                    {exercises.completed !== 0 && (
+                                        <div
+                                            ref={smallCircleRef}
+                                            className='diagram__small-circle'
+                                        >
+                                            {procent}%
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className='exercises-statistic__description'>
+                                <hr className='exercises-statistic__separator' />
+                                <div className='exercises-statistic__description-item exercises-desc-item'>
+                                    <div className='exercises-desc-item__circle' />
+                                    <strong>
+                                        {exercises.completed - exercises.solved}
+                                    </strong>
+                                    <span>
+                                        {translate("profile.failed attempts")}
+                                    </span>
+                                </div>
+                                <div className='exercises-statistic__description-item exercises-desc-item correctly-exercise-desc'>
+                                    <div className='exercises-desc-item__circle' />
+                                    <strong>{exercises.solved}</strong>
+                                    <span>
+                                        {translate("profile.correctly solved")}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        <div className='exercises-statistic__description'>
-                            <hr className='exercises-statistic__separator' />
-                            <div className='exercises-statistic__description-item exercises-desc-item'>
-                                <div className='exercises-desc-item__circle' />
-                                <strong>
-                                    {exercises.completed - exercises.solved}
-                                </strong>
-                                <span>
-                                    {translate("profile.failed attempts")}
-                                </span>
-                            </div>
-                            <div className='exercises-statistic__description-item exercises-desc-item correctly-exercise-desc'>
-                                <div className='exercises-desc-item__circle' />
-                                <strong>{exercises.solved}</strong>
-                                <span>
-                                    {translate("profile.correctly solved")}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

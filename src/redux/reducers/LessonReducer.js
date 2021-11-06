@@ -2,15 +2,15 @@ import { mainAPI } from "../../api/api"
 import { shuffleArray } from "../../utils/arrayShuffle"
 import { newNotice } from "./NoticeReducer"
 
-const INCREMENT_RESOLVED_EXMPLS = "INCREMENT_RESOLVED_EXMPLS"
-const INCREMENT_ALL_EXMPLS = "INCREMENT_ALL_EXMPLS"
-const INCREMENT_EX_NUM = "INCREMENT_EX_NUM"
-const SET_COUPLES = "SET_COUPLES"
-const SET_ANSWER_PIECE = "SET_ANSWER_PIECE"
-const SET_WORD_OPTION = "SET_WORD_OPTION"
-const CREATE_EXAMLE = "CREATE_EXAMLE"
-const SET_FETCHING = "SET_FETCHING"
-const CHECK_ANSWER = "CHECK_ANSWER"
+const INCREMENT_RESOLVED_EXMPLS = "lesson/INCREMENT_RESOLVED_EXMPLS"
+const INCREMENT_ALL_EXMPLS = "lesson/INCREMENT_ALL_EXMPLS"
+const INCREMENT_EX_NUM = "lesson/INCREMENT_EX_NUM"
+const SET_COUPLES = "lesson/SET_COUPLES"
+const SET_ANSWER_PIECE = "lesson/SET_ANSWER_PIECE"
+const SET_WORD_OPTION = "lesson/SET_WORD_OPTION"
+const CREATE_EXAMLE = "lesson/CREATE_EXAMLE"
+const SET_FETCHING = "lesson/SET_FETCHING"
+const CHECK_ANSWER = "lesson/CHECK_ANSWER"
 
 const ID = () => "_" + Math.random().toString(36).substr(2, 9)
 
@@ -240,6 +240,7 @@ export const getCouples =
             dispath(createExample(shuffleArray))
         } catch (error) {
             dispath(newNotice(error.message, "warning"))
+            throw new Error(error.message)
         }
 
         dispath(setFetching(false))
