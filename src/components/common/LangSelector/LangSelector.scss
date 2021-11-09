@@ -1,10 +1,12 @@
 .lang-selector {
     width: min-content;
+    pointer-events: none;
 
     &__container {
         transition: 0.3s ease;
 
-        height: 80px + 12px * 2;
+        // height: 80px + 12px * 2;
+        height: 80px * 3 + 12px * 4;
         overflow: hidden;
         width: min-content;
         padding: 12px;
@@ -30,6 +32,8 @@
             opacity: 1;
         }
         &:first-child {
+            pointer-events: visible;
+            opacity: 1;
             .lang-selector__flag {
                 filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.25));
             }
@@ -44,7 +48,8 @@
 
     &.--opened {
         .lang-selector__container {
-            height: 80px * 3 + 12px * 4;
+            pointer-events: visible;
+
             background: #ecf0f5;
             box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);
         }

@@ -19,6 +19,8 @@ export const mainAPI = {
 
             return response.data // couples
         } catch (error) {
+            console.log(error)
+
             throw new Error(error.message)
         }
     },

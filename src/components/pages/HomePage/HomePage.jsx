@@ -17,7 +17,7 @@ const HomePage = ({ translate, ...props }) => {
 
     React.useEffect(() => i18n.changeLanguage(from), [from])
 
-    const onSubmit = (theme) => {
+    const onSubmit = async (theme) => {
         // langFrom, langTo, theme, keyword,
         try {
             dispatch(
@@ -30,7 +30,9 @@ const HomePage = ({ translate, ...props }) => {
             )
 
             history.push("/lesson")
-        } catch (error) {}
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (

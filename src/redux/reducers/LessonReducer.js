@@ -240,7 +240,6 @@ export const getCouples =
             dispath(createExample(shuffleArray))
         } catch (error) {
             dispath(newNotice(error.message, "warning"))
-            throw new Error(error.message)
         }
 
         dispath(setFetching(false))
