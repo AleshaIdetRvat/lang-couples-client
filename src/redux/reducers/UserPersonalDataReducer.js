@@ -4,7 +4,7 @@ import { setFetching } from "./LessonReducer"
 
 const SET_LANG_FROM = "SET_LANG_FROM"
 const SET_LANG_TO = "SET_LANG_TO"
-
+const userDataStorage = "userData"
 const initState = {
     langs: { from: "en", to: "ru" },
 }
@@ -36,15 +36,20 @@ export const setLangTo = (lang) => ({
     lang,
 })
 
-export const saveLangs = (langs) => async (dispath) => {
-    dispath(setFetching(true))
+export const saveLangs = (langs) => async (dispatch) => {
+    dispatch(setFetching(true))
     try {
         await mainAPI.putLangs(langs)
+        const userData = JSON.parse(localStorage.getItem(userDataStorage))
+        localStorage.setItem(
+            userDataStorage,
+            JSON.stringify({ ...userData, langs })
+        )
     } catch (error) {
-        dispath(newNotice(error.message, "warning"))
+        dispatch(newNotice(error.message, "warning"))
     }
 
-    dispath(setFetching(false))
+    dispatch(setFetching(false))
 }
 
 export default UserPersonalDataReducer
